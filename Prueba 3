@@ -1,0 +1,147 @@
+
+import numpy as np
+try:
+
+    #Definir funciones que despliege menu, grabar, buscar, imprimir certificados y salir
+    def menu():
+        print(f"1. Grabar datos alumno")
+        print(f"2. Buscar alumno por rut")
+        print(f"3. Imprimir certificado de alumno")
+        print(f"4. Salir")
+
+    def grabar():
+        alumno = []
+        print(f"Por favor a continuacion ingrese datos solicitados")
+        
+        validador_rut = True
+        while validador_rut:
+            try:
+                rut = input("Ingrese rut del alumno a registrar: ")
+                rut = rut.replace("-", "")
+                rut = rut.replace(".", "")
+                dv = rut[-1].lower()
+    
+                if len(rut) == 9:
+                    validador_rut = False
+                    print("Rut ingresada exitosamente")
+                    alumno.append(rut)
+                else:
+                    print(f"{rut} no es una opcion de rut valido, por favor reintente")
+            except ValueError:
+                print("Opcion ingresada no valida")
+
+        validador_nombre = True
+        while validador_nombre:
+            try:
+                nombre = input("Ingrese nombre del alumno: ")
+                condicion = len(nombre) <= 12 and len(nombre)>= 2
+                if condicion:
+                    validador_nombre = False
+                    print("nombre ingresado exitosamente")
+                    alumno.append(nombre)
+                else:
+                    print(f"{nombre} no es una opcion valida de nombre, por favor reintente")
+            except ValueError:
+                print("Opcion ingresada no valida")
+                
+        apellido = input("Ingrese apellido del alumno: ")
+        alumno.append(apellido)
+        print("Apellido ingresado exitosamente")
+
+        fecha_n = input("Ingrese fecha de nacimiento: ")
+        alumno.append(fecha_n)
+        print("Fecha de nacimiento ingresado exitosamente")
+
+        ramos = []
+        cantidad_ramos = int(input("Ingrese la cantidad de asignaturas que curso el alumno: "))
+        for i in range(cantidad_ramos):
+            asignatura = []
+            nombre_asignatura = input("Ingrese nombre de la asignatura: ")
+            asignatura.append(nombre_asignatura)
+
+            validador_nota = True
+            while validador_nota:
+                nota = float(input("Ingrese la nota de la asignatura: "))
+                condicion = nota >= 1.0 and nota <= 7.0
+                if condicion:
+                    validador_nota = False
+                    asignatura.append(nota)
+                    print(nota)
+                else:
+                    print("Nota ingresada no valida")
+        
+
+            alumno.append(ramos)
+
+        return alumno
+
+        
+        
+            
+                
+
+
+
+
+            
+    def buscar():
+        rut = input("Ingrese rut del alumno a buscar: ")
+        rut = rut.replace("-", "")
+        rut = rut.replace(".", "")
+        for i in range(len(lista_alumnos)):
+            elemento = lista_alumnos[i]
+            for j in range(len(elemento)):
+                elem = elemento[j]
+                condicion = elem == rut
+                if condicion:
+                    return elemento
+        
+
+
+
+    def imprimir_certificado():
+        pass
+
+        
+
+    def salir():
+        print("Saliendo del programa, vuelva pronto")
+            
+        
+        
+
+
+
+
+
+
+        
+    #comenzar flujo:
+    
+    boton = True
+    lista_alumnos = []
+    while boton:
+        menu()
+        opcion = int(input("Ingrese opcion a ejecutar: "))
+        if opcion == 1:
+            alumno = grabar()
+            lista_alumnos.append(alumno)
+            
+            print(np.array(lista_alumnos))
+        
+
+        elif opcion == 2:
+            alumno_buscado = buscar()
+            print(alumno_buscado)
+
+        elif opcion == 3:
+            pass
+
+        elif opcion == 4:
+            boton = False
+            salir()
+
+except ValueError:
+    print("intenta nuevamente")
+
+    
